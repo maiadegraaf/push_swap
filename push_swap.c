@@ -1,33 +1,5 @@
 #include "push_swap.h"
 
-t_stack	*ft_lstnew(int content, int pos)
-{
-	t_stack *new_element;
-
-	new_element = (t_stack *)malloc(sizeof(t_stack));
-	if (!new_element)
-		return (0);
-	new_element->content = content;
-	new_element->pos = pos;
-	new_element->next = NULL;
-	return (new_element);
-}
-
-void	ft_lstadd_back(t_stack **lst, t_stack *new)
-{
-	t_stack	*tmp;
-
-	tmp = *lst;
-	if (!(*lst))
-	{
-		*lst = new;
-		return ;
-	}
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	tmp->next = new;
-}
-
 size_t determine_stack_size(int argc, char **argv)
 {
 	size_t	i;
@@ -50,43 +22,71 @@ size_t determine_stack_size(int argc, char **argv)
 	return (size);
 }
 
-int create_stack_arg(char *argv, int *pos);
-{
-	size_t	int_size;
-	char	*tmp;
-
-	while (*argv)
-	{
-		while (*argv && *argv == ' ')
-			argv++;
-		if (!*argv)
-			break;
-		while (argv[int_size] != ' ')
-			int_size++;
-		tmp = malloc(sizeof(char) * int_size);
-		if (!tmp)
-			return (NULL);
-		ft_strlcpy(tmp, argv, int_size);
-		
-	}
-}
-
-int fill_stack(int size, char **argv)
+int	check_duplicate(t_stack **stack_a, int num)
 {
 	t_stack	*tmp;
+
+	tmp = *stack_a;
+	printf("num in dup -> %d\n", num);
+	while (tmp->next != NULL)
+	{
+		printf("content -> %d\tpos -> %zu\n", tmp->content, tmp->pos);
+		if (tmp->content == num)
+			return (1);
+		tmp = tmp->next;
+	}
+	printf("end dup\n\n");
+	return (0);
+}
+
+int create_stack_arg(char *argv, size_t *pos, t_stack *stack_a)
+{
+	char	*tmp;
+	t_stack	*tmp_stack;
+	int		num;
+	
+	while (*argv)
+	{
+		num = 0;
+		tmp = ft_strdup_c(argv, ' ');
+		printf("tmp -> %s\n", tmp);
+		if (ft_atoi(tmp, &num) || check_duplicate(&stack_a, num))
+		{
+			free(tmp);
+			return (1);
+		}
+		tmp_stack = ft_lstnew(num, *pos - 1);
+		printf("tmp-stack:\tcontent -> %d\tpos -> %zu\n", tmp_stack->content, tmp_stack->pos);
+		if (tmp_stack)
+			ft_lstadd_back(&stack_a, tmp_stack);
+		printf("stack_a:\tcontent -> %d\tpos -> %zu\n", stack_a->content, stack_a->pos);
+		free (tmp);
+		pos++;
+		while (*argv && *argv != ' ')
+			argv++;
+	}
+	return (0);
+}
+
+int fill_stack(size_t size, char **argv, t_stack *stack_a)
+{
 	size_t	i;
 	size_t	j;
 
 	i = 1;
-	while (i < size)
+	while (i <= size)
 	{
 		j = 0;
+		printf("\ni -> %zu\n", i);
 		while (argv[i][j])
 		{
-			tmp = create_stack_arg
+			create_stack_arg (argv[i], &i, stack_a);
+			// printf("pos -> %zu\n", i);
+			j++;
 		}
+		i++;
 	}
-	return (0)
+	return (0);
 }
 
 int init_stacks(int argc, char **argv)
@@ -94,23 +94,31 @@ int init_stacks(int argc, char **argv)
 	t_stack	*stack_a;
 	t_stack *stack_b;
 	size_t	stack_size;
-	
+
 	stack_size = determine_stack_size(argc, argv);
-	printf("%zu", stack_size);
-	stack_a = malloc(stack_size * sizeof(t_stack));
+	printf("%zu\n", stack_size);
+	stack_a = ft_calloc(stack_size, sizeof(t_stack));
 	if (!stack_a)
 		return (0);
-	stack_b = malloc(stack_size * sizeof(t_stack));
+	stack_b = ft_calloc(stack_size, sizeof(t_stack));
 	if (!stack_b)
 	{
 		free(stack_a);
 		return (0);
+	}
+	printf("content -> %d\tpos -> %zu\n", stack_a->content, stack_a->pos);
+	fill_stack(stack_size, argv, stack_a);
+	while (stack_a->next != NULL)
+	{
+		printf("%d\n", stack_a->content);
+		stack_a = stack_a->next;
 	}
 	return (0);
 }
 
 int main(int argc, char **argv)
 {
+
 	if (argc < 1)
 		return (0);
 	else
