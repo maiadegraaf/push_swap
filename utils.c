@@ -1,24 +1,24 @@
 #include "push_swap.h"
 
-t_stack	*ft_lstnew(int content, size_t pos)
+t_stack	*ft_stacknew(int content, size_t pos)
 {
-	t_stack *new_element;
+	t_stack	*new_element;
 
 	new_element = (t_stack *)malloc(sizeof(t_stack));
 	if (!new_element)
 		return (0);
 	new_element->content = content;
 	new_element->pos = pos;
+	new_element->prev = NULL;
 	new_element->next = NULL;
 	return (new_element);
 }
 
-void	ft_lstadd_back(t_stack **lst, t_stack *new)
+void	ft_stackadd_back(t_stack **lst, t_stack *new)
 {
 	t_stack	*tmp;
 
 	tmp = *lst;
-	printf("hello\n");
 	if (!(*lst))
 	{
 		*lst = new;
@@ -27,74 +27,31 @@ void	ft_lstadd_back(t_stack **lst, t_stack *new)
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 	tmp->next = new;
+	new->prev = tmp;
 }
 
-void	*ft_bzero(void *str, size_t n)
+void	ft_stackclear(t_stack **lst)
 {
-	size_t	i;
+	t_stack	*tmp;
 
-	i = 0;
-	while (i < n)
+	if (!*lst)
+		return ;
+	while (*lst)
 	{
-		((char *)str)[i] = '\0';
-		i++;
+		tmp = (*lst)->next;
+		free(*lst);
+		*lst = tmp;
 	}
-	return (str);
+	*lst = NULL;
 }
 
-void	*ft_calloc(size_t count, size_t size)
-{
-	int		*ret;
-
-	ret = malloc(count * size);
-	if (!ret)
-		return (0);
-	ft_bzero(ret, count * size);
-	return (ret);
-}
-
-char	*ft_strdup_c(const char *s1, char c)
-{
-	char	*s2;
-	size_t	size;
-	size_t	i;
-
-	i = 0;
-	size = 0;
-	while (s1[i] != c)
-	{
-		size++;
-		i++;
-	}
-	s2 = (char *)malloc((size * sizeof(char)) + 1);
-	if (!s2)
-		return (0);
-	i = 0;
-	while (i < size)
-	{
-		s2[i] = s1[i];
-		i++;
-	}
-	s2[i] = '\0';
-	return (s2);
-}
-
-int	ft_isdigit(int c)
-{
-	if (c > 47 && c < 58)
-		return (1);
-	return (0);
-}
-
-int	ft_atoi(const char *str, int *ret)
+int	ft_n_atoi(const char *str, int *ret)
 {
 	int	p_n;
 	int	i;
 
 	i = 0;
 	p_n = 1;
-	while (*str && *str == ' ')
-		str++;
 	if (*str == '-' && *str)
 	{
 		p_n *= -1;
