@@ -1,26 +1,26 @@
 #include "push_swap.h"
 
-size_t determine_stack_size(int argc, char **argv)
-{
-	size_t	i;
-	size_t	j;
-	size_t	size;
+// size_t determine_stack_size(int argc, char **argv)
+// {
+// 	size_t	i;
+// 	size_t	j;
+// 	size_t	size;
 
-	i = 1;
-	size = 0;
-	while (i < (size_t)argc)
-	{
-		j = 0;
-		while (argv[i][j] != '\0')
-		{
-			if (argv[i][j] != ' ')
-				size++;
-			j++;
-		}
-		i++;
-	}
-	return (size);
-}
+// 	i = 1;
+// 	size = 0;
+// 	while (i < (size_t)argc)
+// 	{
+// 		j = 0;
+// 		while (argv[i][j] != '\0')
+// 		{
+// 			if (argv[i][j] != ' ')
+// 				size++;
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// 	return (size);
+// }
 
 int	check_duplicate(t_stack **stack_a, int num)
 {
@@ -68,13 +68,13 @@ int create_stack_arg(char *argv, size_t *pos, t_stack *stack_a)
 	return (0);
 }
 
-int fill_stack(size_t size, char **argv, t_stack *stack_a)
+int	fill_stack(size_t size, char **argv, t_stack *stack_a)
 {
 	size_t	i;
 	size_t	j;
 
 	i = 1;
-	while (i <= size)
+	while (i < size)
 	{
 		j = 0;
 		printf("\ni -> %zu\n", i);
@@ -89,25 +89,22 @@ int fill_stack(size_t size, char **argv, t_stack *stack_a)
 	return (0);
 }
 
-int init_stacks(int argc, char **argv)
+int	init_stacks(int argc, char **argv)
 {
 	t_stack	*stack_a;
-	t_stack *stack_b;
-	size_t	stack_size;
+	t_stack	*stack_b;
 
-	stack_size = determine_stack_size(argc, argv);
-	printf("%zu\n", stack_size);
-	stack_a = ft_calloc(stack_size, sizeof(t_stack));
+	stack_a = (t_stack *)ft_calloc(1, sizeof(t_stack));
 	if (!stack_a)
 		return (0);
-	stack_b = ft_calloc(stack_size, sizeof(t_stack));
+	stack_b = ft_calloc(argc, sizeof(t_stack));
 	if (!stack_b)
 	{
 		free(stack_a);
 		return (0);
 	}
 	printf("content -> %d\tpos -> %zu\n", stack_a->content, stack_a->pos);
-	fill_stack(stack_size, argv, stack_a);
+	fill_stack(argc, argv, stack_a);
 	while (stack_a->next != NULL)
 	{
 		printf("%d\n", stack_a->content);
@@ -118,7 +115,6 @@ int init_stacks(int argc, char **argv)
 
 int main(int argc, char **argv)
 {
-
 	if (argc < 1)
 		return (0);
 	else

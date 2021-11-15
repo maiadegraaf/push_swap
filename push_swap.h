@@ -6,8 +6,8 @@
 
 typedef struct	s_stack
 {
-	int	content;
-	size_t	pos;
+	int				content;
+	size_t			pos;
 	struct s_stack	*next;
 }	t_stack;
 
