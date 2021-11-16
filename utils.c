@@ -30,6 +30,12 @@ void	ft_stackadd_back(t_stack **lst, t_stack *new)
 	new->prev = tmp;
 }
 
+void	ft_stackadd_front(t_stack **lst, t_stack *new)
+{
+	new->next = *lst;
+	*lst = new;
+}
+
 void	ft_stackclear(t_stack **lst)
 {
 	t_stack	*tmp;

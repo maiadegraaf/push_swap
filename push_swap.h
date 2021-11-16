@@ -17,5 +17,8 @@ void	ft_stackadd_back(t_stack **lst, t_stack *new);
 int		ft_n_atoi(const char *str, int *ret);
 int		init_stacks(int argc, char **argv);
 void	ft_stackclear(t_stack **lst);
+void	ft_swap(t_stack **stack, char c);
+void	ft_push(t_stack **from, t_stack **to, char c);
+void	ft_stackadd_front(t_stack **lst, t_stack *new);
 
 #endif
