@@ -31,22 +31,36 @@ void	ft_swap(t_stack **stack, char c)
 void ft_push(t_stack **from, t_stack **to, char c)
 {
 	t_stack *tmp_from;
-	t_stack *tmp_to;
+	t_stack	*new_from;
 
-	if (c == 'a')
-		write(1, "pa\n", 3);
-	else if (c == 'b')
-		write(1, "pb\n", 3);
+	ft_putchar_fd('p', 1);
+	ft_putchar_fd(c, 1);
+	ft_putchar_fd('\n', 1);
 	tmp_from = *from;
-	tmp_to = *to;
+	if ((*from)->next)
+		new_from = (*from)->next;
+	else
+		new_from = NULL;
 	ft_stackadd_front(to, tmp_from);
-	*from = tmp_from->next;
-	free(tmp_from);
-	(*from)->prev = NULL;
-	tmp_from = *from;
-	while (tmp_from->next != NULL)
+	if (!new_from)
 	{
-		tmp_from->pos -= 1;
-		tmp_from = tmp_from->next;
-	}	
+		*from = NULL;
+		return;
+	}
+	new_from->prev = NULL;
+	*from = new_from;
+	while (new_from != NULL)
+	{
+		new_from->pos -= 1;
+		new_from = new_from->next;
+	}
+}
+
+void ft_rotate(t_stack **stack, char c)
+{
+	t_stack *first;
+	t_stack *last;
+
+	first = *stack;
+	
 }

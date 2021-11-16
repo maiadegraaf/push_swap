@@ -32,8 +32,23 @@ void	ft_stackadd_back(t_stack **lst, t_stack *new)
 
 void	ft_stackadd_front(t_stack **lst, t_stack *new)
 {
+	t_stack *tmp;
+
+	if (!*lst)
+	{
+		new->next = NULL;
+		*lst = new;
+		return;
+	}
 	new->next = *lst;
 	*lst = new;
+	tmp = *lst;
+	tmp = tmp->next;
+	while (tmp != NULL)
+	{
+		tmp->pos += 1;
+		tmp = tmp->next;
+	}
 }
 
 void	ft_stackclear(t_stack **lst)
@@ -49,6 +64,21 @@ void	ft_stackclear(t_stack **lst)
 		*lst = tmp;
 	}
 	*lst = NULL;
+}
+
+t_stack	*ft_stacklast(t_stack *stack)
+{
+	int	i;
+
+	i = 0;
+	if (!stack)
+		return (NULL);
+	while (stack->next != NULL)
+	{
+		stack = stack->next;
+		i++;
+	}
+	return (stack);
 }
 
 int	ft_n_atoi(const char *str, int *ret)
@@ -77,3 +107,4 @@ int	ft_n_atoi(const char *str, int *ret)
 	*ret = *ret * p_n;
 	return (0);
 }
+

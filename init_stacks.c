@@ -87,6 +87,22 @@ int	init_stacks(int argc, char **argv)
 		return (1);
 	}
 	ft_push(&stack_a, &stack_b, 'a');
+	printf("1) a -> b\n");
+	print_stacks(stack_a, stack_b, argc);
+	ft_push(&stack_a, &stack_b, 'a');
+	printf("2) a -> b\n");
+	print_stacks(stack_a, stack_b, argc);
+	ft_push(&stack_b, &stack_a, 'b');
+	printf("3) b -> a\n");
+	print_stacks(stack_a, stack_b, argc);
+	return (0);
+}
+
+void	print_stacks(t_stack *stack_a, t_stack *stack_b, int argc)
+{
+	int i = 0;
+
+	printf("stack a\n");
 	while (i < argc && stack_a)
 	{
 		printf("content -> %d\tpos -> %zu\n", stack_a->content, stack_a->pos);
@@ -94,11 +110,11 @@ int	init_stacks(int argc, char **argv)
 		i++;	
 	}
 	i = 0;
+	printf("stack b\n");
 	while (i < argc && stack_b)
 	{
-		printf("content -> %d\tpos -> %zu\n", stack_b->content, stack_a->pos);
-		stack_b = stack_a->next;
+		printf("content -> %d\tpos -> %zu\n", stack_b->content, stack_b->pos);
+		stack_b = stack_b->next;
 		i++;	
 	}
-	return (0);
 }
