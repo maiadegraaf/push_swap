@@ -50,6 +50,7 @@ t_stack	*fill_stack(size_t size, char **argv, t_stack *stack_a)
 	while (i < size)
 	{
 		tmp_stack = create_stack_arg (argv[i], &i);
+		printf("pos -> %zu\tcontent -> %d\n", tmp_stack->pos, tmp_stack->content);
 		if (!tmp_stack
 			|| check_duplicate(&stack_a, tmp_stack->content, tmp_stack->pos))
 		{
@@ -86,13 +87,5 @@ int	init_stacks(int argc, char **argv)
 	{
 		return (1);
 	}
-	while (i < argc - 2 && stack_a)
-	{
-		i++;
-		printf("%d\n", stack_a->content);
-		stack_a = stack_a->next;
-	}
-	stack_a = stack_a->prev;
-	printf("%d\n", stack_a->content);
 	return (0);
 }
