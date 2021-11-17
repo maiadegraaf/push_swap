@@ -64,38 +64,15 @@ t_stack	*fill_stack(size_t size, char **argv, t_stack *stack_a)
 	return (stack_a);
 }
 
-int	init_stacks(int argc, char **argv)
+t_stack	*init_stacks(int argc, char **argv)
 {
 	t_stack	*stack_a;
-	t_stack	*stack_b;
 	int		i;
 
 	i = 0;
 	stack_a = NULL;
-	// if (!stack_a)
-	// 	return (0);
-	stack_b = NULL;
-	// if (!stack_b)
-	// {
-	// 	free(stack_a);
-	// 	return (0);
-	// }
-//	printf("content -> %d\tpos -> %zu\n", stack_a->content, stack_a->pos);
 	stack_a = fill_stack(argc, argv, stack_a);
-	if (!stack_a)
-	{
-		return (1);
-	}
-	ft_push(&stack_a, &stack_b, 'a');
-	printf("1) a -> b\n");
-	print_stacks(stack_a, stack_b, argc);
-	ft_push(&stack_a, &stack_b, 'a');
-	printf("2) a -> b\n");
-	print_stacks(stack_a, stack_b, argc);
-	ft_push(&stack_b, &stack_a, 'b');
-	printf("3) b -> a\n");
-	print_stacks(stack_a, stack_b, argc);
-	return (0);
+	return (stack_a);
 }
 
 void	print_stacks(t_stack *stack_a, t_stack *stack_b, int argc)
@@ -117,4 +94,4 @@ void	print_stacks(t_stack *stack_a, t_stack *stack_b, int argc)
 		stack_b = stack_b->next;
 		i++;	
 	}
-}
+} 
