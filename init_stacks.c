@@ -47,12 +47,6 @@ void	find_order(t_stack **stack_a, long order)
 	t_stack			*tmp;
 
 	tmp = *stack_a;
-	while (tmp->order > -1)
-	{
-		if (!tmp)
-			return ;
-		tmp = tmp->next;
-	}
 	lowest_num = find_next_lowest_num(*stack_a);
 	while (tmp)
 	{
@@ -63,7 +57,6 @@ void	find_order(t_stack **stack_a, long order)
 		}
 		(tmp) = (tmp)->next;
 	}
-	tmp = *stack_a;
 }
 
 t_stack	*fill_stack(size_t size, char **argv, t_stack *stack_a)

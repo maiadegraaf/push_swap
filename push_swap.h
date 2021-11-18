@@ -50,4 +50,9 @@ void	force_sort(t_stack **stack_a, t_stack **stack_b, size_t size);
 //push_swap
 void	push_swap(int argc, char **argv);
 
+//chunks
+void	solve(t_stack **stack_a, t_stack **stack_b, int argc);
+t_stack	*find_median(t_stack *s, int size);
+void	push_lt_med(t_stack **stack_a, t_stack **stack_b, long median);
+
 #endif

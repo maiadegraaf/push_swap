@@ -16,6 +16,8 @@ void	push_swap(int argc, char **argv)
 		force_sort(&stack_a, &stack_b, argc);
 	else if(argc == 3)
 		ft_swap(&stack_a, 'a');
+	else
+		solve(&stack_a, &stack_b, argc);
 	print_stacks(stack_a, stack_b);
 }
 
