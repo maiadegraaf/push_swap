@@ -2,4 +2,3 @@
 *.o
 a.out
 .DS_Store
-libft/libft.a
