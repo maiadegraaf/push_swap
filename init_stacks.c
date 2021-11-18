@@ -63,35 +63,3 @@ t_stack	*fill_stack(size_t size, char **argv, t_stack *stack_a)
 	}
 	return (stack_a);
 }
-
-t_stack	*init_stacks(int argc, char **argv)
-{
-	t_stack	*stack_a;
-	int		i;
-
-	i = 0;
-	stack_a = NULL;
-	stack_a = fill_stack(argc, argv, stack_a);
-	return (stack_a);
-}
-
-void	print_stacks(t_stack *stack_a, t_stack *stack_b)
-{
-	int i = 0;
-
-	printf("stack a\n");
-	while (stack_a)
-	{
-		printf("content -> %d\tpos -> %zu\n", stack_a->content, stack_a->pos);
-		stack_a = stack_a->next;
-		i++;	
-	}
-	i = 0;
-	printf("stack b\n");
-	while (stack_b)
-	{
-		printf("content -> %d\tpos -> %zu\n", stack_b->content, stack_b->pos);
-		stack_b = stack_b->next;
-		i++;	
-	}
-} 

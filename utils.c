@@ -1,86 +1,5 @@
 #include "push_swap.h"
 
-t_stack	*ft_stacknew(int content, size_t pos)
-{
-	t_stack	*new_element;
-
-	new_element = (t_stack *)malloc(sizeof(t_stack));
-	if (!new_element)
-		return (0);
-	new_element->content = content;
-	new_element->pos = pos;
-	new_element->prev = NULL;
-	new_element->next = NULL;
-	return (new_element);
-}
-
-void	ft_stackadd_back(t_stack **lst, t_stack *new)
-{
-	t_stack	*tmp;
-
-	tmp = *lst;
-	if (!(*lst))
-	{
-		*lst = new;
-		return ;
-	}
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	tmp->next = new;
-	new->prev = tmp;
-}
-
-void	ft_stackadd_front(t_stack **lst, t_stack *new)
-{
-	t_stack *tmp;
-
-	if (!*lst)
-	{
-		new->next = NULL;
-		*lst = new;
-		return;
-	}
-	new->next = *lst;
-	*lst = new;
-	tmp = *lst;
-	tmp = tmp->next;
-	while (tmp != NULL)
-	{
-		tmp->pos += 1;
-		tmp = tmp->next;
-	}
-}
-
-void	ft_stackclear(t_stack **lst)
-{
-	t_stack	*tmp;
-
-	if (!*lst)
-		return ;
-	while (*lst)
-	{
-		tmp = (*lst)->next;
-		free(*lst);
-		*lst = tmp;
-	}
-	*lst = NULL;
-}
-
-t_stack	*ft_stacklast(t_stack *stack)
-{
-	int	i;
-
-	i = 0;
-	if (!stack)
-		return (NULL);
-	while (stack->next != NULL)
-	{
-		stack = stack->next;
-		i++;
-	}
-	return (stack);
-}
-
 int	ft_n_atoi(const char *str, int *ret)
 {
 	int	p_n;
@@ -108,3 +27,52 @@ int	ft_n_atoi(const char *str, int *ret)
 	return (0);
 }
 
+void	print_stacks(t_stack *stack_a, t_stack *stack_b)
+{
+	int i = 0;
+
+	printf("stack a\n");
+	while (stack_a)
+	{
+		printf("content -> %d\tpos -> %zu\n", stack_a->content, stack_a->pos);
+		stack_a = stack_a->next;
+		i++;	
+	}
+	i = 0;
+	printf("stack b\n");
+	while (stack_b)
+	{
+		printf("content -> %d\tpos -> %zu\n", stack_b->content, stack_b->pos);
+		stack_b = stack_b->next;
+		i++;	
+	}
+} 
+
+int	check_order(t_stack *stack)
+{
+	while(stack->next != NULL)
+	{
+		if(stack->next->content > stack->content)
+			stack = stack->next;
+		else
+			return (0);
+	}
+	return (1);
+}
+
+t_stack	*find_lowest_num(t_stack *stack)
+{
+	t_stack	*lowest_num;
+	
+	lowest_num = ft_stacknew(stack->content, stack->pos);
+	while(stack)
+	{
+		if (stack->content < lowest_num->content)
+		{
+			lowest_num->content = stack->content;
+			lowest_num->pos	= stack->pos;
+		}
+		stack = stack->next;
+	}
+	return (lowest_num);
+}
