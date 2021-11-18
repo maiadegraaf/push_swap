@@ -25,7 +25,7 @@ void	ft_push(t_stack **from, t_stack **to, char c);
 void	ft_rotate_both(t_stack **stack_a, t_stack **stack_b, int i);
 void	ft_rotate(t_stack **stack, char c);
 void	ft_rrotate(t_stack **stack, char c);
-void	print_stacks(t_stack *stack_a, t_stack *stack_b, int argc);
+void	print_stacks(t_stack *stack_a, t_stack *stack_b);
 
 
 #endif

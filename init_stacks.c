@@ -75,12 +75,12 @@ t_stack	*init_stacks(int argc, char **argv)
 	return (stack_a);
 }
 
-void	print_stacks(t_stack *stack_a, t_stack *stack_b, int argc)
+void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 {
 	int i = 0;
 
 	printf("stack a\n");
-	while (i < argc && stack_a)
+	while (stack_a)
 	{
 		printf("content -> %d\tpos -> %zu\n", stack_a->content, stack_a->pos);
 		stack_a = stack_a->next;
@@ -88,7 +88,7 @@ void	print_stacks(t_stack *stack_a, t_stack *stack_b, int argc)
 	}
 	i = 0;
 	printf("stack b\n");
-	while (i < argc && stack_b)
+	while (stack_b)
 	{
 		printf("content -> %d\tpos -> %zu\n", stack_b->content, stack_b->pos);
 		stack_b = stack_b->next;
