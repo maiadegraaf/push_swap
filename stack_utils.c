@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-t_stack	*ft_stacknew(int content, size_t pos)
+t_stack	*ft_stacknew(int content, size_t pos, long order)
 {
 	t_stack	*new_element;
 
@@ -9,6 +9,7 @@ t_stack	*ft_stacknew(int content, size_t pos)
 		return (0);
 	new_element->content = content;
 	new_element->pos = pos;
+	new_element->order = order;
 	new_element->prev = NULL;
 	new_element->next = NULL;
 	return (new_element);

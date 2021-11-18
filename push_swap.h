@@ -8,12 +8,13 @@ typedef struct	s_stack
 {
 	int				content;
 	size_t			pos;
+	long			order;
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }	t_stack;
 
 //stack_utils
-t_stack	*ft_stacknew(int content, size_t pos);
+t_stack	*ft_stacknew(int content, size_t pos, long order);
 void	ft_stackadd_back(t_stack **lst, t_stack *new);
 void	ft_stackclear(t_stack **lst);
 void	ft_stackadd_front(t_stack **lst, t_stack *new);
@@ -23,6 +24,7 @@ t_stack	*ft_stacklast(t_stack *stack);
 int		ft_n_atoi(const char *str, int *ret);
 void	print_stacks(t_stack *stack_a, t_stack *stack_b);
 t_stack	*find_lowest_num(t_stack *stack);
+t_stack	*find_next_lowest_num(t_stack *stack);
 int		check_order(t_stack *stack);
 
 //init_stacks

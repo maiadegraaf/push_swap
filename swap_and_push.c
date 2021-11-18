@@ -10,7 +10,8 @@ void	ft_swap_both(t_stack **stack_a, t_stack **stack_b)
 void	ft_swap(t_stack **stack, char c)
 {
 	t_stack	*hold_stack;
-	int tmp;
+	int		tmp_content;
+	int		tmp_order;
 	t_stack *first;
 	t_stack *second;
 
@@ -23,9 +24,12 @@ void	ft_swap(t_stack **stack, char c)
 	hold_stack = *stack;
 	first = hold_stack;
 	second = hold_stack->next;
-	tmp = first->content;
+	tmp_content = first->content;
+	tmp_order = first->order;
 	first->content = second->content;
-	second->content = tmp;
+	first->order = second->order;
+	second->content = tmp_content;
+	second->order = tmp_order;
 }
 
 void	ft_push(t_stack **from, t_stack **to, char c)

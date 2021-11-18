@@ -35,10 +35,35 @@ t_stack	*create_stack_arg(char *argv, size_t *pos)
 		return (NULL);
 	}
 	free(tmp);
-	tmp_stack = ft_stacknew(num, *pos - 1);
+	tmp_stack = ft_stacknew(num, *pos - 1, -1);
 	if (tmp_stack)
 		return (tmp_stack);
 	return (NULL);
+}
+
+void	find_order(t_stack **stack_a, long order)
+{
+	t_stack			*lowest_num;
+	t_stack			*tmp;
+
+	tmp = *stack_a;
+	while (tmp->order > -1)
+	{
+		if (!tmp)
+			return ;
+		tmp = tmp->next;
+	}
+	lowest_num = find_next_lowest_num(*stack_a);
+	while (tmp)
+	{
+		if ((tmp)->content == lowest_num->content)
+		{
+			(tmp)->order = order;
+			break;
+		}
+		(tmp) = (tmp)->next;
+	}
+	tmp = *stack_a;
 }
 
 t_stack	*fill_stack(size_t size, char **argv, t_stack *stack_a)
@@ -59,6 +84,12 @@ t_stack	*fill_stack(size_t size, char **argv, t_stack *stack_a)
 			return (NULL);
 		}
 		ft_stackadd_back(&stack_a, tmp_stack);
+		i++;
+	}
+	i = 0;
+	while (i < size - 1)
+	{
+		find_order(&stack_a, i);
 		i++;
 	}
 	return (stack_a);
