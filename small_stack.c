@@ -32,7 +32,7 @@ void	lowest_to_b(t_stack **stack_a, t_stack **stack_b, size_t size)
 	while (i < size - 4)
 	{
 		lowest_num = find_lowest_num(*stack_a);
-		if (lowest_num->pos > size / 2)
+		if (lowest_num->pos > (size - 1) / 2)
 		{
 			while ((*stack_a)->content != lowest_num->content)
 				ft_rrotate(stack_a, 'a');
@@ -49,17 +49,17 @@ void	lowest_to_b(t_stack **stack_a, t_stack **stack_b, size_t size)
 
 void	force_sort(t_stack **stack_a, t_stack **stack_b, size_t size)
 {
-	int 	arr[3];
+	int		arr[3];
 	size_t	i;
 
 	i = 0;
-
 	if (size > 4)
 		lowest_to_b(stack_a, stack_b, size);
 	arr[0] = (*stack_a)->content;
 	arr[1] = (*stack_a)->next->content;
 	arr[2] = (*stack_a)->next->next->content;
-	under_three(stack_a, arr);
+	if (!check_order(*stack_a))
+		under_three(stack_a, arr);
 	if (size > 4)
 	{
 		while (i < size - 4)

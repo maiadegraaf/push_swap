@@ -4,7 +4,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-typedef struct	s_stack
+typedef struct s_stack
 {
 	int				content;
 	size_t			pos;
@@ -13,12 +13,27 @@ typedef struct	s_stack
 	struct s_stack	*next;
 }	t_stack;
 
+typedef struct s_radix
+{
+	int				content;
+	size_t			pos;
+	struct s_radix	*prev;
+	struct s_radix	*next;
+}	t_radix;
+
 //stack_utils
 t_stack	*ft_stacknew(int content, size_t pos, long order);
 void	ft_stackadd_back(t_stack **lst, t_stack *new);
 void	ft_stackclear(t_stack **lst);
 void	ft_stackadd_front(t_stack **lst, t_stack *new);
 t_stack	*ft_stacklast(t_stack *stack);
+
+//radix_utils
+t_radix	*ft_radixnew(int content, size_t pos);
+void	ft_radixadd_back(t_radix **lst, t_radix *new);
+void	ft_radixadd_front(t_radix **lst, t_radix *new);
+void	ft_radixclear(t_radix **lst);
+t_radix	*ft_radixlast(t_radix *radix);
 
 //utils
 int		ft_n_atoi(const char *str, int *ret);
@@ -50,7 +65,7 @@ void	force_sort(t_stack **stack_a, t_stack **stack_b, size_t size);
 //push_swap
 void	push_swap(int argc, char **argv);
 
-//chunks
+//solve
 void	solve(t_stack **stack_a, t_stack **stack_b, int argc);
 t_stack	*find_median(t_stack *s, int size);
 void	push_lt_med(t_stack **stack_a, t_stack **stack_b, long median);

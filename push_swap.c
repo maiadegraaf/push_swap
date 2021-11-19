@@ -14,7 +14,7 @@ void	push_swap(int argc, char **argv)
 		return ;
 	else if (argc < 7 && argc > 3)
 		force_sort(&stack_a, &stack_b, argc);
-	else if(argc == 3)
+	else if (argc == 3)
 		ft_swap(&stack_a, 'a');
 	else
 		solve(&stack_a, &stack_b, argc);

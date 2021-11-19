@@ -53,7 +53,7 @@ void	find_order(t_stack **stack_a, long order)
 		if ((tmp)->content == lowest_num->content)
 		{
 			(tmp)->order = order;
-			break;
+			break ;
 		}
 		(tmp) = (tmp)->next;
 	}

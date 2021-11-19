@@ -36,7 +36,7 @@ void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 	{
 		printf("content -> %d\tpos -> %zu\torder -> %ld\n", stack_a->content, stack_a->pos, stack_a->order);
 		stack_a = stack_a->next;
-		i++;	
+		i++;
 	}
 	i = 0;
 	printf("stack b\n");
@@ -44,9 +44,9 @@ void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 	{
 		printf("content -> %d\tpos -> %zu\torder-> %ld\n", stack_b->content, stack_b->pos, stack_b->order);
 		stack_b = stack_b->next;
-		i++;	
+		i++;
 	}
-} 
+}
 
 int	check_order(t_stack *stack)
 {
@@ -91,7 +91,7 @@ t_stack	*find_next_lowest_num(t_stack *stack)
 t_stack	*find_lowest_num(t_stack *stack)
 {
 	t_stack	*lowest_num;
-	
+
 	lowest_num = ft_stacknew(stack->content, stack->pos, stack->order);
 	while(stack)
 	{
