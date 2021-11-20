@@ -37,6 +37,7 @@ t_radix	*ft_radixlast(t_radix *radix);
 
 //utils
 int		ft_n_atoi(const char *str, int *ret);
+void	r_print_stacks(t_radix *stack_a, t_radix *stack_b);
 void	print_stacks(t_stack *stack_a, t_stack *stack_b);
 t_stack	*find_lowest_num(t_stack *stack);
 t_stack	*find_next_lowest_num(t_stack *stack);
@@ -57,6 +58,16 @@ void	ft_rotate_both(t_stack **stack_a, t_stack **stack_b, int i);
 void	ft_rotate(t_stack **stack, char c);
 void	ft_rrotate(t_stack **stack, char c);
 
+//r_swap/push
+void	ft_r_swap_both(t_radix **stack_a, t_radix **stack_b);
+void	ft_r_swap(t_radix **stack, char c);
+void	ft_r_push(t_radix **from, t_radix **to, char c);
+
+//r_rotate
+void	ft_r_rotate_both(t_radix **stack_a, t_radix **stack_b, int i);
+void	ft_r_rotate(t_radix **stack, char c);
+void	ft_r_rrotate(t_radix **stack, char c);
+
 //small_stack
 void	under_three(t_stack **stack_a, int arr[3]);
 void	lowest_to_b(t_stack **stack_a, t_stack **stack_b, size_t size);
@@ -66,7 +77,7 @@ void	force_sort(t_stack **stack_a, t_stack **stack_b, size_t size);
 void	push_swap(int argc, char **argv);
 
 //solve
-void	solve(t_stack **stack_a, t_stack **stack_b, int argc);
+void	solve(t_stack **stack_a, int argc);
 t_stack	*find_median(t_stack *s, int size);
 void	push_lt_med(t_stack **stack_a, t_stack **stack_b, long median);
 

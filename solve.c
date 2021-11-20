@@ -16,14 +16,6 @@ t_radix	*init_radix_stack(t_stack *stack, int index)
 	return (radix_stack);
 }
 
-int	whats_bigger(int top, int btm)
-{
-	if (top > btm)
-		return (top);
-	else
-		return (-btm);
-}
-
 int	find_closest(t_radix *stack, int middle)
 {
 	int		top;
@@ -47,98 +39,75 @@ int	find_closest(t_radix *stack, int middle)
 		btm++;
 		stack = stack->prev;
 	}
-	return (whats_bigger(top, btm));
+	if (top > btm)
+		return (top);
+	else
+		return (-btm);
 }
 
-void	solve(t_stack **stack_a, t_stack **stack_b, int argc)
+void	go_to_closest(t_radix **stack, int rotate, void r(t_radix **stack, char c), char c)
 {
-	int		i;
-	int		index;
-	size_t	rotate;
-	t_radix	*radix_stack;
-
-	i = 0;
-	index = 0;
-	while (((argc - 2) >> index) != 0)
-		++index;
-	radix_stack = init_radix_stack(*stack_a, index - 1);
-	if (radix_stack->content)
+	while (rotate)
 	{
-		ft_push(stack_a, stack_b, 'b');
+		r(stack, c);
+		rotate--;
 	}
+}
+
+int	all_zeros(t_radix *radix_stack)
+{
+	while (radix_stack)
+	{
+		if(radix_stack->content == 0)
+			return(1);
+		radix_stack = radix_stack->next;
+	}
+	return (0);
+}
+
+void	move_zero(t_radix **radix_stack_a, t_radix **radix_stack_b, size_t size)
+{
+	size_t	rotate;
+
+	if (!(*radix_stack_a)->content)
+		ft_r_push(radix_stack_a, radix_stack_b, 'b');
 	else
 	{
-		rotate = find_closest(radix_stack, (argc - 1) / 2);
-		printf("rotate = %zu\n", rotate);
+		rotate = find_closest(*radix_stack_a, size / 2);
 		if (rotate < 0)
-		{
-			rotate *= -1;
-			while (rotate > 0)
-			{
-				ft_rrotate(stack_a, 'a');
-				rotate--;
-			}
-			ft_push(stack_a, stack_b, 'b');
-		}
+			go_to_closest(radix_stack_a, -rotate, ft_r_rrotate, 'a');
 		else
 		{
-			while (rotate > 0)
-			{
-				ft_rotate(stack_a, 'a');
-				rotate--;
-			}
-			ft_push(stack_a, stack_b, 'b');
+			go_to_closest(radix_stack_a, rotate, ft_r_rotate, 'a');
 		}
+		ft_r_push(radix_stack_a, radix_stack_b, 'b');
 	}
 }
 
-// t_stack	*find_median(t_stack *s, int size)
-// {
-// 	t_stack *stack_median;
-// 	int		median;
+void	solve(t_stack **stack_a, int argc)
+{
+	int		index;
+	int		max_index;
+	int		i;
+	t_radix	*radix_stack_a;
+	t_radix *radix_stack_b;
 
-// 	median = size / 2;
-// 	while (s)
-// 	{
-// 		if (s->order == median)
-// 		{
-// 			stack_median = ft_stacknew(s->content, s->pos, s->order);
-// 			return (stack_median);
-// 		}
-// 		s = s->next;
-// 	}
-// 	return (NULL);
-// }
-
-// void	push_lt_med(t_stack **stack_a, t_stack **stack_b, long median)
-// {
-// 	t_stack	*tmp;
-// 	int		rotate;
-
-// 	tmp = *stack_a;
-// 	while (*stack_a)
-// 	{
-// 		rotate = find_closest(*stack_a, median);
-// 		if (rotate < 0)
-// 		{
-// 			rotate *= -1;
-// 			while (rotate > 0)
-// 			{
-// 				ft_rrotate(stack_a, 'a');
-// 				rotate--;
-// 			}
-// 			ft_push(stack_a, stack_b, 'b');
-// 		}
-// 		else
-// 		{
-// 			while (rotate > 0)
-// 			{
-// 				ft_rotate(stack_a, 'a');
-// 				rotate--;
-// 			}
-// 			ft_push(stack_a, stack_b, 'b');
-// 		}
-// 		*stack_a = (*stack_a)->next;
-// 	}
-// 	*stack_a = tmp;
-// }
+	index = 0;
+	i = 0;
+	max_index = 0;
+	radix_stack_b = NULL;
+	while (((argc - 2) >> max_index) != 0)
+		++max_index;
+	while (index < max_index)
+	{
+		radix_stack_a = init_radix_stack(*stack_a, index);
+		while (all_zeros(radix_stack_a) && i < 10)
+		{
+			move_zero(&radix_stack_a, &radix_stack_b, argc - 1);
+			i++;
+		}
+		while (radix_stack_b)
+			ft_r_push(&radix_stack_b, &radix_stack_a, 'a');
+		index++;
+	}
+}

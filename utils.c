@@ -48,6 +48,27 @@ void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
+void	r_print_stacks(t_radix *stack_a, t_radix *stack_b)
+{
+	int i = 0;
+
+	printf("radix_stack a\n");
+	while (stack_a)
+	{
+		printf("content -> %d\tpos -> %zu\n", stack_a->content, stack_a->pos);
+		stack_a = stack_a->next;
+		i++;
+	}
+	i = 0;
+	printf("radix_stack b\n");
+	while (stack_b)
+	{
+		printf("content -> %d\tpos -> %zu\n", stack_b->content, stack_b->pos);
+		stack_b = stack_b->next;
+		i++;
+	}
+}
+
 int	check_order(t_stack *stack)
 {
 	while(stack->next != NULL)
