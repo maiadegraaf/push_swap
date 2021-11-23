@@ -13,14 +13,6 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
-typedef struct s_radix
-{
-	int				content;
-	size_t			pos;
-	struct s_radix	*prev;
-	struct s_radix	*next;
-}	t_radix;
-
 //stack_utils
 t_stack	*ft_stacknew(int content, size_t pos, long order);
 void	ft_stackadd_back(t_stack **lst, t_stack *new);
@@ -28,16 +20,8 @@ void	ft_stackclear(t_stack **lst);
 void	ft_stackadd_front(t_stack **lst, t_stack *new);
 t_stack	*ft_stacklast(t_stack *stack);
 
-//radix_utils
-t_radix	*ft_radixnew(int content, size_t pos);
-void	ft_radixadd_back(t_radix **lst, t_radix *new);
-void	ft_radixadd_front(t_radix **lst, t_radix *new);
-void	ft_radixclear(t_radix **lst);
-t_radix	*ft_radixlast(t_radix *radix);
-
 //utils
 int		ft_n_atoi(const char *str, int *ret);
-void	r_print_stacks(t_radix *stack_a, t_radix *stack_b);
 void	print_stacks(t_stack *stack_a, t_stack *stack_b);
 t_stack	*find_lowest_num(t_stack *stack);
 t_stack	*find_next_lowest_num(t_stack *stack);
@@ -57,16 +41,6 @@ void	ft_push(t_stack **from, t_stack **to, char c);
 void	ft_rotate_both(t_stack **stack_a, t_stack **stack_b, int i);
 void	ft_rotate(t_stack **stack, char c);
 void	ft_rrotate(t_stack **stack, char c);
-
-//r_swap/push
-void	ft_r_swap_both(t_radix **stack_a, t_radix **stack_b);
-void	ft_r_swap(t_radix **stack, char c);
-void	ft_r_push(t_radix **from, t_radix **to, char c);
-
-//r_rotate
-void	ft_r_rotate_both(t_radix **stack_a, t_radix **stack_b, int i);
-void	ft_r_rotate(t_radix **stack, char c);
-void	ft_r_rrotate(t_radix **stack, char c);
 
 //small_stack
 void	under_three(t_stack **stack_a, int arr[3]);

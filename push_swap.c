@@ -13,18 +13,14 @@ void	push_swap(int argc, char **argv)
 	else if (check_order(stack_a))
 		return ;
 	else if (argc < 7 && argc > 3)
-	{
-		printf("force sort\n");
 		force_sort(&stack_a, &stack_b, argc);
-	}
 	else if (argc == 3)
 		ft_swap(&stack_a, 'a');
 	else
-	{
-		printf("solve\n");
 		solve(&stack_a, argc);
-	}
-	//print_stacks(stack_a, stack_b);
+	ft_stackclear(&stack_a);
+	free(stack_a);
+	system("leaks push_swap");
 }
 
 int	main(int argc, char **argv)
