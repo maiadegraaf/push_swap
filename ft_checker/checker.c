@@ -46,7 +46,7 @@ int	main(int argc, char **argv)
 	input = ft_strdup("start");
 	while (input)
 	{
-		input = get_next_line(1);
+		input = get_next_line(0);
 		if (ft_strncmp("Error\n", input, 6))
 			return (write_error());
 		if (input)
