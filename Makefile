@@ -1,33 +1,44 @@
-NAME := push_swap
-SRCFILES := \
-			init_stacks.c \
-			push_swap.c \
-			rotate.c \
-			small_stack.c \
-			solve.c \
-			stack_utils.c \
-			swap_and_push.c \
-			utils.c
+NAME = push_swap checker
 
-HEADERFILES := push_swap.h
+SRCFILES_PS :=	src/init_stacks.c \
+				src/push_swap.c \
+				src/rotate.c \
+				src/small_stack.c \
+				src/solve.c \
+				src/stack_utils.c \
+				src/swap_and_push.c \
+				src/utils.c
 
-CFLAGS	= -Wall -Wextra -Werror
+SRCFILES_C :=	ft_checker/checker.c \
+				src/init_stacks.c \
+				src/rotate.c \
+				src/swap_and_push.c \
+				src/stack_utils.c \
+				src/utils.c
 
-LIBFT = ./libft/libft.a
+HEADERFILES := includes/push_swap.h
+
+CFLAGS	?= -Wall -Wextra -Werror
+
+LIBFT := ./libft/libft.a
 
 all: $(NAME)
 
 $(LIBFT):
 	$(MAKE) bonus -C ./libft
 
-$(NAME): $(SRCFILES) $(LIBFT)
-	$(CC) $(CFLAGS) -o $(NAME) $^
+$(word 1, $(NAME)): $(SRCFILES_PS) $(LIBFT)
+	$(CC) $(CFLAGS) $(SRCFILES_PS) $(LIBFT) -o $(word 1, $(NAME))
+$(word 2, $(NAME)): $(SRCFILES_C) $(LIBFT)
+	$(CC) $(CFLAGS) $(SRCFILES_C) $(LIBFT) -o $(word 2, $(NAME))
 
 clean:
-	rm -f $(OBJFILES) $(BONUS_OBJFILES)
+	make fclean -C ./libft
 
 fclean: clean
-	rm -f $(NAME) $^
+	rm -f $(LIBFT)
+	rm -f $(word 1, $(NAME))
+	rm -f $(word 2, $(NAME))
 
 re: fclean all
 

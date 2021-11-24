@@ -52,5 +52,12 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+char	*get_next_line(int fd);
+int		ft_check_nl(char *input);
+char	*ft_send_join(char *s1, char *s2);
+char	*ft_g_strjoin(char *s1, char *s2);
+char	*ft_create_line(char *saved);
+char	*ft_remove_line(char *saved);
+char	*read_buff(int fd, char *saved);
 
 #endif
