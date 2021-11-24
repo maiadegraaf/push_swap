@@ -44,6 +44,7 @@ void	lowest_to_b(t_stack **stack_a, t_stack **stack_b, size_t size)
 		}
 		ft_push(stack_a, stack_b, 'b');
 		i++;
+		free(lowest_num);
 	}
 }
 

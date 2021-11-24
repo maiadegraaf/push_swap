@@ -57,12 +57,14 @@ void	find_order(t_stack **stack_a, long order)
 		}
 		(tmp) = (tmp)->next;
 	}
+	free(lowest_num);
 }
 
-t_stack	*fill_stack(size_t size, char **argv, t_stack *stack_a)
+t_stack	*fill_stack(size_t size, char **argv)
 {
 	size_t	i;
 	t_stack	*tmp_stack;
+	t_stack *stack_a;
 
 	i = 1;
 	while (i < size)

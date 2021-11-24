@@ -28,7 +28,7 @@ t_stack	*find_next_lowest_num(t_stack *stack);
 int		check_order(t_stack *stack);
 
 //init_stacks
-t_stack	*fill_stack(size_t size, char **argv, t_stack *stack_a);
+t_stack	*fill_stack(size_t size, char **argv);
 t_stack	*create_stack_arg(char *argv, size_t *pos);
 int		check_duplicate(t_stack **stack_a, int num, size_t pos);
 

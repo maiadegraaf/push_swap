@@ -5,8 +5,7 @@ void	push_swap(int argc, char **argv)
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-	stack_a = NULL;
-	stack_a = fill_stack(argc, argv, stack_a);
+	stack_a = fill_stack(argc, argv);
 	stack_b = NULL;
 	if (!stack_a)
 		write (1, "Error\n", 6);
@@ -18,9 +17,7 @@ void	push_swap(int argc, char **argv)
 		ft_swap(&stack_a, 'a');
 	else
 		solve(&stack_a, argc);
-	ft_stackclear(&stack_a);
-	free(stack_a);
-	system("leaks push_swap");
+	//print_stacks(stack_a, stack_b);
 }
 
 int	main(int argc, char **argv)
@@ -31,4 +28,5 @@ int	main(int argc, char **argv)
 	{
 		push_swap(argc, argv);
 	}
+	//system("leaks push_swap");
 }

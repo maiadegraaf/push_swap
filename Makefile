@@ -15,13 +15,13 @@ CFLAGS	= -Wall -Wextra -Werror
 
 LIBFT = ./libft/libft.a
 
-all: push_swap
+all: $(NAME)
 
 $(LIBFT):
 	$(MAKE) bonus -C ./libft
 
-$(NAME): $(SRCFILES)
-	$(CC) $(CFLAGS) -o $(NAME) $^ $(LIBFT)
+$(NAME): $(SRCFILES) $(LIBFT)
+	$(CC) $(CFLAGS) -o $(NAME) $^
 
 clean:
 	rm -f $(OBJFILES) $(BONUS_OBJFILES)
