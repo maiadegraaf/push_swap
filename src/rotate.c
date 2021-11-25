@@ -23,10 +23,8 @@ void	ft_rotate(t_stack **stack, char c)
 	int		last_content;
 	size_t	last_order;
 
-	if (c == 'a')
-		write(1, "ra\n", 3);
-	else if (c == 'b')
-		write(1, "rb\n", 3);
+	if (c == 'a' || c == 'b')
+		print_action('r', c, 1);
 	if (!(*stack)->next)
 		return ;
 	first = *stack;
@@ -52,10 +50,8 @@ void	ft_rrotate(t_stack **stack, char c)
 	int		first_content;
 	size_t	first_order;
 
-	if (c == 'a')
-		write(1, "rra\n", 4);
-	else if (c == 'b')
-		write(1, "rrb\n", 4);
+	if (c == 'a' || c == 'b')
+		print_action('r', c, -1);
 	if (!(*stack)->next)
 		return ;
 	first = *stack;

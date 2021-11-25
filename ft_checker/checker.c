@@ -2,27 +2,27 @@
 
 int	perform_action(t_stack **stack_a, t_stack **stack_b, char *input)
 {
-	if (ft_strncmp("pa\n", input, 3))
-		ft_push(stack_a, stack_b, 'a');
-	else if (ft_strncmp("pb\n", input, 3))
-		ft_push(stack_b, stack_a, 'b');
-	else if (ft_strncmp("sa\n", input, 3))
-		ft_swap(stack_a, 'a');
-	else if (ft_strncmp("sb\n", input, 3))
-		ft_swap(stack_b, 'b');
-	else if (ft_strncmp("ss\n", input, 3))
+	if (!ft_strncmp("pa\n", input, 3))
+		ft_push(stack_b, stack_a, 'x');
+	else if (!ft_strncmp("pb\n", input, 3))
+		ft_push(stack_a, stack_b, 'x');
+	else if (!ft_strncmp("sa\n", input, 3))
+		ft_swap(stack_a, 'x');
+	else if (!ft_strncmp("sb\n", input, 3))
+		ft_swap(stack_b, 'x');
+	else if (!ft_strncmp("ss\n", input, 3))
 		ft_swap_both(stack_a, stack_b);
-	else if (ft_strncmp("ra\n", input, 3))
-		ft_rotate(stack_a, 'a');
-	else if (ft_strncmp("rb\n", input, 3))
-		ft_rotate(stack_b, 'b');
-	else if (ft_strncmp("rr\n", input, 3))
+	else if (!ft_strncmp("ra\n", input, 3))
+		ft_rotate(stack_a, 'x');
+	else if (!ft_strncmp("rb\n", input, 3))
+		ft_rotate(stack_b, 'x');
+	else if (!ft_strncmp("rr\n", input, 3))
 		ft_rotate_both(stack_a, stack_b, 1);
-	else if (ft_strncmp("rra\n", input, 4))
-		ft_rrotate(stack_a, 'a');
-	else if (ft_strncmp("rrb\n", input, 4))
-		ft_rrotate(stack_b, 'b');
-	else if (ft_strncmp("rrr\n", input, 4))
+	else if (!ft_strncmp("rra\n", input, 4))
+		ft_rrotate(stack_a, 'x');
+	else if (!ft_strncmp("rrb\n", input, 4))
+		ft_rrotate(stack_b, 'x');
+	else if (!ft_strncmp("rrr\n", input, 4))
 		ft_rotate_both(stack_a, stack_b, -1);
 	else
 		return (1);
@@ -47,7 +47,7 @@ int	main(int argc, char **argv)
 	while (input)
 	{
 		input = get_next_line(0);
-		if (ft_strncmp("Error\n", input, 6))
+		if (input && !ft_strncmp("Error\n", input, 6))
 			return (write_error());
 		if (input)
 		{

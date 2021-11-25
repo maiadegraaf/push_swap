@@ -1,4 +1,19 @@
 #include "../includes/push_swap.h"
+void	print_action(char c, char a, int i)
+{
+	if (c == 'p')
+		ft_putchar_fd('p', 1);
+	else if (c == 's')
+		ft_putchar_fd('s', 1);
+	else if (c == 'r')
+	{
+		if (i < 0)
+			write (1, "r", 1);
+		write(1, "r", 1);
+	}
+	ft_putchar_fd(a, 1);
+	ft_putchar_fd('\n', 1);
+}
 
 void	ft_swap_both(t_stack **stack_a, t_stack **stack_b)
 {
@@ -17,10 +32,8 @@ void	ft_swap(t_stack **stack, char c)
 
 	if (!*stack || (*stack)->next == NULL)
 		return ;
-	if (c == 'a')
-		write(1, "sa\n", 3);
-	else if (c == 'b')
-		write(1, "sb\n", 3);
+	if (c == 'a' || c == 'b')
+		print_action('s', c, 0);
 	hold_stack = *stack;
 	first = hold_stack;
 	second = hold_stack->next;
@@ -37,9 +50,8 @@ void	ft_push(t_stack **from, t_stack **to, char c)
 	t_stack	*tmp_from;
 	t_stack	*new_from;
 
-	ft_putchar_fd('p', 1);
-	ft_putchar_fd(c, 1);
-	ft_putchar_fd('\n', 1);
+	if (c == 'a' || c == 'b')
+		print_action('p', c, 0);
 	tmp_from = *from;
 	if ((*from)->next)
 		new_from = (*from)->next;
