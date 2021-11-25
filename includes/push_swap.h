@@ -33,6 +33,7 @@ t_stack	*create_stack_arg(char *argv, size_t *pos);
 int		check_duplicate(t_stack **stack_a, int num, size_t pos);
 
 //swap&push
+void	print_action(char c, char a, int i);
 void	ft_swap_both(t_stack **stack_a, t_stack **stack_b);
 void	ft_swap(t_stack **stack, char c);
 void	ft_push(t_stack **from, t_stack **to, char c);

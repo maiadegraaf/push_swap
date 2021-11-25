@@ -16,7 +16,7 @@ int	ft_n_atoi(const char *str, long *ret)
 		return (1);
 	while (str[i])
 	{
-		if (ft_isdigit(str[i]) == 1 && i < 10)
+		if (ft_isdigit(str[i]) == 1)
 			*ret = (*ret * 10) + (str[i++] - '0');
 		else
 			return (1);
@@ -27,26 +27,26 @@ int	ft_n_atoi(const char *str, long *ret)
 	return (0);
 }
 
-void	print_stacks(t_stack *stack_a, t_stack *stack_b)
-{
-	int i = 0;
+// void	print_stacks(t_stack *stack_a, t_stack *stack_b)
+// {
+// 	int i = 0;
 
-	printf("stack a\n");
-	while (stack_a)
-	{
-		printf("content -> %d\tpos -> %zu\torder -> %ld\n", stack_a->content, stack_a->pos, stack_a->order);
-		stack_a = stack_a->next;
-		i++;
-	}
-	i = 0;
-	printf("stack b\n");
-	while (stack_b)
-	{
-		printf("content -> %d\tpos -> %zu\torder-> %ld\n", stack_b->content, stack_b->pos, stack_b->order);
-		stack_b = stack_b->next;
-		i++;
-	}
-}
+// 	printf("stack a\n");
+// 	while (stack_a)
+// 	{
+// 		printf("content -> %d\tpos -> %zu\torder -> %ld\n", stack_a->content, stack_a->pos, stack_a->order);
+// 		stack_a = stack_a->next;
+// 		i++;
+// 	}
+// 	i = 0;
+// 	printf("stack b\n");
+// 	while (stack_b)
+// 	{
+// 		printf("content -> %d\tpos -> %zu\torder-> %ld\n", stack_b->content, stack_b->pos, stack_b->order);
+// 		stack_b = stack_b->next;
+// 		i++;
+// 	}
+// }
 
 int	check_order(t_stack *stack)
 {
