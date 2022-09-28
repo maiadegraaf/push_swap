@@ -92,3 +92,13 @@ Thanks to [this article](https://medium.com/@jamierobertdawson/push-swap-the-lea
 Larger stacks however, cannot be hardcoded.  While there are several different ways to implement an effective sorting algorithm, I decided to use a radix sort, inspired by [this article](https://medium.com/nerd-for-tech/push-swap-tutorial-fa746e6aba1e).  Not only was this quite an elegant simple solution, it also allowed me to learn about binary and bitwise operations! 
 
 Radix essentially breaks the sorting up into several steps. At each step it sorts the numbers based upon their position in the first, tenth, hundredth, etc. place. 
+<p align="center">
+  <a href="https://github.com/maiadegraaf">
+    <picture>
+    <img alt="Radix Sort" src="https://user-images.githubusercontent.com/68693691/192822529-27b03f76-5b16-4fa4-bcc0-d7a1e4f0e2e0.png" width=350>
+    </picture>
+  </a>
+</p>
+
+Except the way that 
+
