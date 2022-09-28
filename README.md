@@ -1,5 +1,7 @@
 # push_swap
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yrMsuw9rKbA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 - [push_swap](#push_swap)
 	- [The Challenge](#the-challenge)
 		- [Available Instructions](#available-instructions)
@@ -10,6 +12,11 @@
 		- [Sorting the Stack](#sorting-the-stack)
 			- [Small Stack](#small-stack)
 			- [Big Stack](#big-stack)
+	- [Demonstration](#demonstration)
+		- [Output](#output)
+	- [Speed](#speed)
+	- [Installation](#installation)
+		- [Some commands to try:](#some-commands-to-try)
 
 ## The Challenge
 The goal of this project was to create a sorting algorithm that takes a list of integers on a stack and sorts them, with a limited set of instructions, in the quickest way possible.  We are given two stacks, ```a``` and ```b```.  Stack ```a``` is initialized with an x amount of unsorted integers (provided as argument when the program is run), and stack ```b``` is empty.  Using the instructions below, and using only the two stacks the program should return stack ```a``` sorted with the smallest on top and the largest on the bottom, and stack ```b``` should be empty.
@@ -76,7 +83,7 @@ $>
 ### Creating the Stack
 The first thing I considered was how I was going to represent the stacks in my code.  Of the two obvious options, arrays and linked lists, I chose the later.  My only previous experience with linked lists was making the helper functions for the [libft](https://github.com/maiadegraaf/libft) project, so essentially next to nothing.  It really felt like a good way to learn how to use them properly.  Arrays also seemed like a real headache to work with in this project, as the stacks constantly would have to be reallocated with each ```pa``` or ```pb```, or worse, allocate a huge amount of space which would be a really ugly solution. By the end of this project I had really discovered a love for linked lists, and now rarely use arrays unless I really have to!
 
-The first thing the program does is take the arguments and parse them into a linked list format, at this stage the program also checks for errors.  Before sorting the stack, the program checks what the final order should be, using a far simpler sorting algorithm, so each item on the stack gets assigned a number between ```0``` and ```n``` where ```n``` is the size of the stack. Ultimately it is this number that is used to sort the stack.
+The first thing the program does is take the arguments and parse them into a linked list format, at this stage the program also checks for errors. 
 
 ### Sorting the Stack
 #### Small Stack
@@ -100,4 +107,256 @@ Radix essentially breaks the sorting up into several steps. At each step it sort
   </a>
 </p>
 
-Since we (only) have access to two stacks in push_swap, the most efficient way to handle radix is through binary, and sort by `1`'s and `0`'s.  As this method only works with positive integers, the program will sort the integers based upon their ultimate (sorted) position in the stack.
+Since we only have access to two stacks in push_swap, the most efficient way to handle radix is through binary, and sort by `1`'s and `0`'s.  As this method only works with positive integers, before sorting the stack, the program checks what the final order should be, using a far simpler sorting algorithm, so each item on the stack gets assigned a number between ```0``` and ```n - 1``` where ```n``` is the size of the stack.
+
+## Demonstration
+
+*Original*:
+```
+2
+-1
+-33
+6
+7
+1
+0
+------	------
+a		b
+```
+
+*Stack Represented by the Final Order*:
+```
+4
+1
+0
+5
+6
+3
+2
+------	------
+a		b
+```
+*Binary*:
+```
+100
+001
+000
+101
+110
+011
+010
+------	------
+a		b
+```
+*Push All Nodes that have a `0` in the 0th bit to stack `b`*
+
+```
+pb
+ra
+pb
+ra
+pb
+ra
+pb
+```
+```
+001		010
+101		110
+011		000
+		100
+------	------
+a		b
+```
+
+*Push all elements back to stack `a`*
+```
+pa
+pa
+pa
+pa
+```
+
+```
+100
+000
+110
+010
+001		
+101		
+011		
+------	------
+a		b
+```
+
+*Push All Nodes that have a `0` in the 1st bit to stack `b`*
+```
+pb
+pb
+ra
+ra
+pb
+pb
+ra
+```
+```
+110		101
+010		001
+011		000
+		100
+------	------
+a		b
+```
+
+*Push all elements back to stack `a`*
+```
+pa
+pa
+pa
+pa
+```
+```
+100
+000
+001
+101
+110
+010
+011	
+------	------
+a		b
+```
+
+*Push All Nodes that have a `0` in the 2nd bit to stack `b`*
+```
+ra
+pb
+pb
+ra
+ra
+pb
+pb
+```
+```
+100		011
+101		010
+110		001
+		000
+------	------
+a		b
+```
+
+*Push all elements back to stack `a`*
+```
+pa
+pa
+pa
+pa
+```
+```
+000
+001
+010
+011
+100
+101
+110	
+------	------
+a		b
+```
+
+*The Sorted Stack*
+```
+0
+1
+2
+3
+4
+5
+6	
+------	------
+a		b
+```
+
+### Output
+```
+$>./push_swap 2 -1 -33 6 7 1 0       
+pb
+ra
+pb
+ra
+pb
+ra
+pb
+pa
+pa
+pa
+pa
+pb
+pb
+ra
+ra
+pb
+pb
+ra
+pa
+pa
+pa
+pa
+ra
+pb
+pb
+ra
+ra
+pb
+pb
+pa
+pa
+pa
+pa
+```
+
+## Speed
+
+Although radix is a simple and quick sorting algorithm it isn't the fastest comparatively.  In retrospect I think the ultimate solution would have been to create a program that tries multiple algorithms and then outputs the fastest set of instructions.
+
+| Stack Size | Average Instructions |
+| :--------: | :------------------: |
+|     3      |          1           |
+|     5      |          8           |
+|     10     |          65          |
+|    100     |         1084         |
+|    500     |         6784         |
+
+One of the (what I think) fun parts of radix is that it will always use the same amount of instructions to sort a stack of n size.  So for example it will always use 1084 instructions for a stack that had 100 numbers. Of course this is quite logical as the inputted numbers are sorted based on their translated order (ie. the order they end up in). So stack `a` and stack `b` are always going to be the same size at each stage, and will therefore have the same amount of instructions.
+
+## Installation
+Clone the repository:
+``` 
+git clone https://github.com/maiadegraaf/push_swap.git
+cd push_swap
+make
+```
+
+### Some commands to try:
+**10 random numbers:**
+```
+ARG=$(seq 10 | sort -R | tr '\n' ' ') && ./push_swap $ARG
+```
+**100 random numbers:**
+```
+ARG=$(seq 100 | sort -R | tr '\n' ' ') && ./push_swap $ARG
+```
+**Number of instructions with 100 random numbers:**
+```
+ARG=$(seq 100 | sort -R | tr '\n' ' ') && ./push_swap $ARG | wc -l
+```
+**500 random numbers:**
+```
+ARG=$(seq 500 | sort -R | tr '\n' ' ') && ./push_swap $ARG
+```
+**Number of instructions with 500 random numbers:**
+```
+ARG=$(seq 500 | sort -R | tr '\n' ' ') && ./push_swap $ARG | wc -l
+```
+
+If you would like to check that my program actually does what it's supposed to I really recommend [this tester](https://github.com/louisabricot/push_swap_tester).
