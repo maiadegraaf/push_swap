@@ -79,15 +79,6 @@ The first thing the program does is take the arguments and parse them into a lin
 ### Sorting the Stack
 One of the requirements of the subject was to sort three numbers with three or less instructions, and five numbers with twelve or less instructions.  The easiest way to do this was to essentially hard code all stacks that have five or less numbers. As three numbers can only be ordered in five different ways, by comparing each number, you can easily determine which action(s) should be used. For five numbers I simply move the smallest two numbers to the other stack while the remaining three numbers are sorted. 
 
-Swap A <br>
-
----
-```
-2		1
-1  	= 	2
-3		3
-```
-
----
+![small stack sort 001](https://user-images.githubusercontent.com/68693691/192802602-91ee87a7-ae57-4f5c-986d-4dd57ebf511e.png)
 
 Larger stacks however, cannot be hardcoded.  While there are several different ways to implement an effective sorting algorithm, I decided to use a radix sort, inspired by [this article](https://medium.com/nerd-for-tech/push-swap-tutorial-fa746e6aba1e).  This allowed me to 
