@@ -1,7 +1,0 @@
-{
-	"files.associations": {
-		"memory": "c",
-		"utility": "c",
-		"type_traits": "c"
-	}
-}
