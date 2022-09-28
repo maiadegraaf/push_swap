@@ -22,7 +22,7 @@ t_stack	*create_stack_arg(char *argv, size_t *pos)
 {
 	char	*tmp;
 	t_stack	*tmp_stack;
-	long		num;
+	long	num;
 
 	num = 0;
 	tmp = ft_strdup(argv);

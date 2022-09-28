@@ -10,7 +10,11 @@ void	push_swap(int size, char **argv)
 	if (!stack_a)
 		write (2, "Error\n", 6);
 	else if (check_order(stack_a))
+	{
+		ft_stackclear(&stack_a);
+		free(stack_a);
 		return ;
+	}
 	else if (size < 6 && size > 2)
 		force_sort(&stack_a, &stack_b, size);
 	else if (size == 2)

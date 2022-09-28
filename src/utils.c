@@ -27,27 +27,6 @@ int	ft_n_atoi(const char *str, long *ret)
 	return (0);
 }
 
-// void	print_stacks(t_stack *stack_a, t_stack *stack_b)
-// {
-// 	int i = 0;
-
-// 	printf("stack a\n");
-// 	while (stack_a)
-// 	{
-// 		printf("content -> %d\tpos -> %zu\torder -> %ld\n", stack_a->content, stack_a->pos, stack_a->order);
-// 		stack_a = stack_a->next;
-// 		i++;
-// 	}
-// 	i = 0;
-// 	printf("stack b\n");
-// 	while (stack_b)
-// 	{
-// 		printf("content -> %d\tpos -> %zu\torder-> %ld\n", stack_b->content, stack_b->pos, stack_b->order);
-// 		stack_b = stack_b->next;
-// 		i++;
-// 	}
-// }
-
 int	check_order(t_stack *stack)
 {
 	while (stack->next != NULL)
