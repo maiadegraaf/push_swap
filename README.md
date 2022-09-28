@@ -2,7 +2,7 @@
 
 
 ## The Challenge:
-The goal of this project was to create a sorting algorithm that takes a list of integers on a stack and sorts them, with a limited set of instructions, in the quickest way possible.
+The goal of this project was to create a sorting algorithm that takes a list of integers on a stack and sorts them, with a limited set of instructions, in the quickest way possible.  We are given two stacks, ```a``` and ```b```.  Stack ```a``` is initialzed with an x amount of unsorted integers (provided as argument when the program is run), and stack ```b``` is empty.  Using the instructions below, and using only the two stacks the program should return stack ```a``` sorted with the smallest on top and the largest on the bottom, and stack ```b``` should be empty.
 
 ### Available Instructions:
 
@@ -19,3 +19,6 @@ The goal of this project was to create a sorting algorithm that takes a list of 
 |```rra```| Shift down all elements of stack ```a``` by 1, the last element becomes the first one.|
 |```rrb```| Shift down all elements of stack ```b``` by 1, the last element becomes the first one.|
 |```rrr```| ```rra``` and ```rrb``` at the same time.|
+
+### Error Handeling:
+
