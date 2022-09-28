@@ -67,7 +67,7 @@ $>./push_swap 2 1 2 3
 Error
 $>./push_swap 2 1 a 3
 Error
-$>./push_swap -2147483647 3 2 214748364355
+$>./push_swap -2147483647 3 2 2.1
 Error
 $>
 ```
@@ -84,7 +84,11 @@ One of the requirements of the subject was to sort three numbers with three or l
 
 ![small stack sort 001](https://user-images.githubusercontent.com/68693691/192802602-91ee87a7-ae57-4f5c-986d-4dd57ebf511e.png)
 
-For five numbers I simply move the smallest two numbers to the other stack while the remaining three numbers are sorted, using the above logic. 
+For five numbers I simply move the smallest two numbers to the other stack while the remaining three numbers are sorted, using the above logic.
+
+Thanks to [this article](https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a) for the clear explanation.
 
 #### Big Stack
-Larger stacks however, cannot be hardcoded.  While there are several different ways to implement an effective sorting algorithm, I decided to use a radix sort, inspired by [this article](https://medium.com/nerd-for-tech/push-swap-tutorial-fa746e6aba1e).  This allowed me to 
+Larger stacks however, cannot be hardcoded.  While there are several different ways to implement an effective sorting algorithm, I decided to use a radix sort, inspired by [this article](https://medium.com/nerd-for-tech/push-swap-tutorial-fa746e6aba1e).  Not only was this quite an elegant simple solution, it also allowed me to learn about binary and bitwise operations! 
+
+Radix essentially breaks the sorting up into several steps. At each step it sorts the numbers based upon their position in the first, tenth, hundredth, etc. place. 
