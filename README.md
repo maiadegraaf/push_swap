@@ -1,22 +1,19 @@
 # push_swap
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/yrMsuw9rKbA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-- [push_swap](#push_swap)
-	- [The Challenge](#the-challenge)
-		- [Available Instructions](#available-instructions)
-		- [Expected Input and Output](#expected-input-and-output)
-		- [Error Handling](#error-handling)
-	- [Implementation](#implementation)
-		- [Creating the Stack](#creating-the-stack)
-		- [Sorting the Stack](#sorting-the-stack)
-			- [Small Stack](#small-stack)
-			- [Big Stack](#big-stack)
-	- [Demonstration](#demonstration)
-		- [Output](#output)
-	- [Speed](#speed)
-	- [Installation](#installation)
-		- [Some commands to try:](#some-commands-to-try)
+- [The Challenge](#the-challenge)
+	- [Available Instructions](#available-instructions)
+	- [Expected Input and Output](#expected-input-and-output)
+	- [Error Handling](#error-handling)
+- [Implementation](#implementation)
+	- [Creating the Stack](#creating-the-stack)
+	- [Sorting the Stack](#sorting-the-stack)
+		- [Small Stack](#small-stack)
+		- [Big Stack](#big-stack)
+- [Demonstration](#demonstration)
+	- [Output](#output)
+- [Speed](#speed)
+- [Installation](#installation)
+	- [Some commands to try:](#some-commands-to-try)
 
 ## The Challenge
 The goal of this project was to create a sorting algorithm that takes a list of integers on a stack and sorts them, with a limited set of instructions, in the quickest way possible.  We are given two stacks, ```a``` and ```b```.  Stack ```a``` is initialized with an x amount of unsorted integers (provided as argument when the program is run), and stack ```b``` is empty.  Using the instructions below, and using only the two stacks the program should return stack ```a``` sorted with the smallest on top and the largest on the bottom, and stack ```b``` should be empty.
@@ -278,7 +275,7 @@ a		b
 ```
 
 ### Output
-```
+```sh
 $>./push_swap 2 -1 -33 6 7 1 0       
 pb
 ra
@@ -327,7 +324,7 @@ Although radix is a simple and quick sorting algorithm it isn't the fastest comp
 |    100     |         1084         |
 |    500     |         6784         |
 
-One of the (what I think) fun parts of radix is that it will always use the same amount of instructions to sort a stack of n size.  So for example it will always use 1084 instructions for a stack that had 100 numbers. Of course this is quite logical as the inputted numbers are sorted based on their translated order (ie. the order they end up in). So stack `a` and stack `b` are always going to be the same size at each stage, and will therefore have the same amount of instructions.
+One of the (what I think) fun parts of radix is that it will always use the same amount of instructions to sort a stack of `n` size.  So for example it will always use 1084 instructions for a stack that had 100 numbers. Of course this is quite logical as the inputted numbers are sorted based on their translated order (ie. the order they end up in). So stack `a` and stack `b` are always going to be the same size at each stage, and will therefore have the same amount of instructions.
 
 ## Installation
 Clone the repository:
@@ -339,23 +336,23 @@ make
 
 ### Some commands to try:
 **10 random numbers:**
-```
+```sh
 ARG=$(seq 10 | sort -R | tr '\n' ' ') && ./push_swap $ARG
 ```
 **100 random numbers:**
-```
+```sh
 ARG=$(seq 100 | sort -R | tr '\n' ' ') && ./push_swap $ARG
 ```
 **Number of instructions with 100 random numbers:**
-```
+```sh
 ARG=$(seq 100 | sort -R | tr '\n' ' ') && ./push_swap $ARG | wc -l
 ```
 **500 random numbers:**
-```
+```sh
 ARG=$(seq 500 | sort -R | tr '\n' ' ') && ./push_swap $ARG
 ```
 **Number of instructions with 500 random numbers:**
-```
+```sh
 ARG=$(seq 500 | sort -R | tr '\n' ' ') && ./push_swap $ARG | wc -l
 ```
 
