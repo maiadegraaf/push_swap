@@ -100,5 +100,4 @@ Radix essentially breaks the sorting up into several steps. At each step it sort
   </a>
 </p>
 
-Except the way that 
-
+Since we (only) have access to two stacks in push_swap, the most efficient way to handle radix is through binary, and sort by `1`'s and `0`'s.  As this method only works with positive integers, the program will sort the integers based upon their ultimate (sorted) position in the stack.
