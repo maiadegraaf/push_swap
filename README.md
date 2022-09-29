@@ -117,7 +117,7 @@ Since we only have access to two stacks in push_swap, the most efficient way to 
 7
 1
 0
-------	------
+------		------
 a		b
 ```
 
