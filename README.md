@@ -1,5 +1,8 @@
 # push_swap
 
+*An algorithm for sorting numbers on a stack.*
+
+## Table of Contents
 - [The Challenge](#the-challenge)
 	- [Available Instructions](#available-instructions)
 	- [Expected Input and Output](#expected-input-and-output)
