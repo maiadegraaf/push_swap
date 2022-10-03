@@ -327,7 +327,7 @@ Although radix is a simple and quick sorting algorithm it isn't the fastest comp
 One of the (what I think) fun parts of radix is that it will always use the same amount of instructions to sort a stack of `n` size.  So for example it will always use 1084 instructions for a stack that had 100 numbers. Of course this is quite logical as the inputted numbers are sorted based on their translated order (ie. the order they end up in). So stack `a` and stack `b` are always going to be the same size at each stage, and will therefore have the same amount of instructions.
 
 ## Installation
-Clone the repository:
+### Clone the repository:
 ``` 
 git clone https://github.com/maiadegraaf/push_swap.git
 cd push_swap
